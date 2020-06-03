@@ -17,9 +17,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build:prod": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:cjs": "rm -rf cjs && tsc -m commonjs --outDir cjs --sourceMap false",
+    "build:esm": "rm -rf esm && tsc -m es6 --outDir esm --sourceMap false",
+    "build:ts": "yarn run build:cjs && yarn run build:esm",
+    "build": "yarn run build:ts"
   },
   "eslintConfig": {
     "extends": "react-app"
